@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css_add %}
+<link rel="stylesheet" href="{% static 'horoscope/css/info.css' %}">
+{% endblock %}
+
+
+{% block title %}
+{{sing | upper}}
+{% endblock %}
+
+{% block content %}
+{% include 'includes/navbar.html'%}
+    <h1>{{sing_name}}</h1>
+    {% if description_zodiac is None %}
+        <h2>НУ МЭН, такого знака не существует - {{sing|title}}, заебал</h2>
+    {% else %}
+        <h2> {{description_zodiac}} </h2>
+    {% endif %}
+{% endblock %}

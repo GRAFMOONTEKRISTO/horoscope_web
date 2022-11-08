@@ -1,0 +1,33 @@
+<!--Расширяем базовым шаблоном-->
+{% extends 'base.html' %}
+
+"""Подключаем css файл"""
+{% load static %}
+
+{% block css_add %}
+    <link rel="stylesheet" href="{% static 'horoscope/css/index.css' %}">
+{% endblock %}
+
+
+"""1. (block title) Делаем динамическое поведение, т.е прописываем отдельный блок для названия страницы
+и он будет подставляться в base.html только на главную страницу и менять его можно только тут"""
+
+{% block title %}
+Меню
+{% endblock %}
+
+"""2. (block head) Делаем динамическое поведение, т.е прописываем отдельный блок для заголовка страницы
+и он будет подставляться в base.html только на главную страницу и менять его можно только тут"""
+
+{% block head %}
+    <h1>Application Horoscope</h1>
+{% endblock %}
+
+"""3. (block content) Делаем динамическое поведение, т.е прописываем отдельный блок для контекста страницы
+и он будет подставляться в base.html только на главную страницу и менять его можно только тут"""
+
+{% block content %}
+    {% for zodiac in zodiacs %}
+        <li><a href="{% url 'horoscope_name' sign_zodiac=zodiac %}"> {{ zodiac|title }}</a></li>
+    {% endfor %}
+{% endblock %}
